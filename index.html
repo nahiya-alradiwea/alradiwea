@@ -10,17 +10,18 @@
         body { font-family: 'Cairo', sans-serif; background-color: #f1f5f9; scroll-behavior: smooth; }
         .bg-navy { background-color: #1a237e; }
         .bg-gold { background-color: #c5a021; }
-        .bg-complaint { background-color: #dc2626; } /* أحمر حاد للشكاوى */
-        .bg-volunteer { background-color: #16a34a; } /* أخضر للمبادرات */
+        .bg-complaint { background-color: #dc2626; } 
+        .bg-volunteer { background-color: #16a34a; } 
         
         #successModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 9999; align-items: center; justify-content: center;
         }
         .hero-section {
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
                         url('https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1000&q=80');
             background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
@@ -28,42 +29,50 @@
 
     <!-- نافذة النجاح مع رقم المتابعة -->
     <div id="successModal">
-        <div class="bg-white p-8 md:p-12 rounded-[2rem] max-w-md w-full text-center shadow-2xl mx-4 border-t-[12px] id="modalBorder" border-navy">
-            <div class="text-green-500 text-7xl mb-4">✅</div>
-            <h3 class="text-3xl font-black text-navy mb-2">تم الإرسال بنجاح</h3>
-            <p class="text-gray-600 font-bold mb-6 italic">مع تحيات مديرية ناحية الرضوية</p>
+        <div class="bg-white p-8 md:p-12 rounded-[2rem] max-w-md w-full text-center shadow-2xl mx-4 border-t-[12px] border-navy">
+            <div class="text-green-500 text-7xl mb-4 text-center">✅</div>
+            <h3 class="text-3xl font-black text-navy mb-2 text-center">تم الإرسال بنجاح</h3>
+            <p class="text-gray-600 font-bold mb-6 italic text-center text-lg">صوتك وصل... وملاحظتك ستصنع الفرق</p>
             
             <div class="bg-gray-100 p-4 rounded-2xl mb-6 border-2 border-dashed border-gray-400">
-                <p class="text-sm text-gray-500 font-bold mb-1">رقم متابعة الطلب (يرجى حفظه):</p>
-                <p id="serialNumber" class="text-3xl font-black text-red-600 tracking-widest">---</p>
+                <p class="text-sm text-gray-500 font-bold mb-1 text-center">رقم متابعة الطلب (يرجى حفظه):</p>
+                <p id="serialNumber" class="text-3xl font-black text-red-600 tracking-widest text-center">---</p>
             </div>
 
-            <p class="text-sm text-gray-500 leading-relaxed mb-6">سيتم معالجة المشكلة وتنفيذ المقترح والملاحظة بأسرع وقت ممكن.</p>
-            <button onclick="closeModal()" class="bg-navy text-white px-8 py-4 rounded-2xl font-bold w-full shadow-lg hover:scale-105 transition">إغلاق</button>
+            <p class="text-sm text-gray-500 leading-relaxed mb-6 text-center italic">«نستمع إليكم… لنخدمكم بشكل أفضل»</p>
+            <button onclick="closeModal()" class="bg-navy text-white px-8 py-4 rounded-2xl font-bold w-full shadow-lg hover:scale-105 transition text-center">إغلاق</button>
         </div>
     </div>
 
+    <!-- الهيدر مع الشعار الفرعي -->
     <nav class="bg-white shadow-md border-b-4 border-gold p-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex justify-between items-center px-2">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center px-2 gap-2">
             <div class="flex items-center gap-3">
-                <div class="bg-navy p-2 rounded-lg text-white font-bold">الرضوية</div>
-                <h1 class="text-navy font-black text-lg md:text-xl leading-tight text-right">مديرية ناحية الرضوية</h1>
+                <div class="bg-navy p-2 rounded-lg text-white font-bold text-sm">الرضوية</div>
+                <h1 class="text-navy font-black text-lg md:text-xl leading-tight">مديرية ناحية الرضوية</h1>
+            </div>
+            <div class="hidden md:block text-navy font-bold text-sm italic opacity-80">
+                «نستمع إليكم… لنخدمكم بشكل أفضل»
             </div>
         </div>
     </nav>
 
-    <header class="hero-section text-white py-12 px-4 text-center">
-        <h2 class="text-3xl md:text-5xl font-black mb-10 tracking-tight text-center">بوابة صوت المواطن</h2>
+    <!-- الواجهة الرئيسية مع العبارات الكبيرة -->
+    <header class="hero-section text-white py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-6xl font-black mb-6 tracking-tight leading-tight">صوتك يصل... <br><span class="text-gold">وملاحظتك تصنع الفرق</span></h2>
+            <p class="text-xl md:text-2xl font-bold opacity-90 italic">«نستمع إليكم… لنخدمكم بشكل أفضل»</p>
+        </div>
         
-        <!-- الخانتين الكبيرتين -->
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-            <button onclick="setMode('complaint')" class="bg-complaint hover:scale-105 transition-all p-10 rounded-[2rem] shadow-2xl flex flex-col items-center gap-4 group border-4 border-transparent hover:border-white">
-                <span class="text-6xl group-hover:animate-bounce">📝</span>
-                <span class="text-2xl md:text-3xl font-black">قسم الشكاوى والخدمات</span>
+        <!-- الخانات الكبيرة -->
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+            <button onclick="setMode('complaint')" class="bg-complaint hover:scale-105 transition-all p-12 rounded-[2.5rem] shadow-2xl flex flex-col items-center gap-4 group border-4 border-transparent hover:border-white">
+                <span class="text-7xl group-hover:animate-bounce">📝</span>
+                <span class="text-2xl md:text-4xl font-black">تقديم شكوى أو طلب</span>
             </button>
-            <button onclick="setMode('volunteer')" class="bg-volunteer hover:scale-105 transition-all p-10 rounded-[2rem] shadow-2xl flex flex-col items-center gap-4 group border-4 border-transparent hover:border-white">
-                <span class="text-6xl group-hover:animate-bounce">🌟</span>
-                <span class="text-2xl md:text-3xl font-black text-center">مبادرة منطقتنا أجمل</span>
+            <button onclick="setMode('volunteer')" class="bg-volunteer hover:scale-105 transition-all p-12 rounded-[2.5rem] shadow-2xl flex flex-col items-center gap-4 group border-4 border-transparent hover:border-white">
+                <span class="text-7xl group-hover:animate-bounce">🌟</span>
+                <span class="text-2xl md:text-4xl font-black text-center">مبادرة منطقتنا أجمل</span>
             </button>
         </div>
     </header>
@@ -72,8 +81,8 @@
         <div class="bg-white rounded-[2.5rem] shadow-2xl p-6 md:p-12 border border-gray-100">
             
             <div class="text-center mb-10">
-                <h3 id="modeTitle" class="text-3xl font-black text-navy mb-2">تقديم طلب</h3>
-                <div id="modeIndicator" class="h-2 w-32 mx-auto rounded-full"></div>
+                <h3 id="modeTitle" class="text-3xl font-black text-navy mb-2">تقديم طلب جديد</h3>
+                <div id="modeIndicator" class="h-2 w-40 mx-auto rounded-full"></div>
             </div>
 
             <form id="complaintForm" class="space-y-8">
@@ -83,40 +92,40 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="font-black text-red-800 text-lg block">إرسال الطلب بشكل سري؟</span>
-                            <span class="text-xs text-red-600">سيتم إخفاء جهة التوجيه وتصل للمدير فقط</span>
+                            <span class="text-xs text-red-600 font-bold">يطلع عليها مدير الناحية حصراً</span>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" id="secretToggle" class="sr-only peer">
                             <div class="w-14 h-7 bg-gray-300 rounded-full peer peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-red-600 transition-all"></div>
                         </label>
                     </div>
-                    <p id="secretNote" class="text-xs text-red-800 font-bold mt-4 hidden bg-white p-3 rounded-xl border border-red-200">
-                        ⚠️ يطلع عليها مدير الناحية الحقوقي علي غضب الغزالي المحترم فقط.
+                    <p id="secretNote" class="text-xs text-red-800 font-bold mt-4 hidden bg-white p-4 rounded-xl border border-red-200 shadow-sm leading-relaxed">
+                        ⚠️ تنبيه: هذا الخيار يجعل الرسالة تصل لمدير الناحية الحقوقي علي غضب الغزالي المحترم فقط، ولن تظهر لأي شعبة أخرى.
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" id="userName" placeholder="الاسم الثلاثي الكامل" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none focus:border-navy font-bold transition-all">
-                    <input type="tel" id="userPhone" placeholder="رقم الموبايل" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none focus:border-navy font-bold transition-all">
+                    <input type="text" id="userName" placeholder="الاسم الثلاثي الكامل" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none focus:border-navy font-bold">
+                    <input type="tel" id="userPhone" placeholder="رقم الموبايل" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none focus:border-navy font-bold">
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div id="deptWrapper">
                         <label class="block text-gray-700 font-black mb-2 text-sm">توجيه الطلب إلى:</label>
                         <select id="targetDept" class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-white outline-none font-bold">
-                            <!-- الخيارات تضاف تلقائياً عبر JS -->
+                            <!-- الخيارات تضاف تلقائياً -->
                         </select>
                     </div>
                     <div>
                         <label class="block text-gray-700 font-black mb-2 text-sm">المنطقة / الحي:</label>
-                        <input type="text" id="regionName" placeholder="اسم المنطقة" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none font-bold">
+                        <input type="text" id="regionName" placeholder="مثال: الاولى . الثانية ..." required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none font-bold">
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-gray-700 font-black mb-2 text-sm">اسم المختار:</label>
-                        <input type="text" id="mukhtarName" placeholder="اسم المختار" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none font-bold">
+                        <input type="text" id="mukhtarName" placeholder="اسم مختار المنطقة" required class="w-full p-5 rounded-2xl border-2 border-gray-100 bg-gray-50 outline-none font-bold">
                     </div>
                     <div class="flex flex-col justify-end">
                         <button type="button" onclick="getLocation()" id="locBtn" class="bg-gray-100 p-5 rounded-2xl border-2 border-gray-200 font-black text-gray-600 hover:bg-gray-200 transition-all">
@@ -128,7 +137,7 @@
 
                 <div>
                     <label class="block text-gray-700 font-black mb-2 text-sm">التفاصيل الكاملة:</label>
-                    <textarea id="details" rows="5" placeholder="اكتب هنا تفاصيل طلبك بشكل واضح..." required class="w-full p-5 rounded-2xl border-2 border-gray-100 outline-none focus:border-navy font-bold"></textarea>
+                    <textarea id="details" rows="6" placeholder="يرجى كتابة التفاصيل بدقة هنا..." required class="w-full p-5 rounded-2xl border-2 border-gray-100 outline-none focus:border-navy font-bold"></textarea>
                 </div>
 
                 <div class="p-6 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
@@ -137,16 +146,18 @@
                 </div>
 
                 <button type="submit" id="submitBtn" class="w-full py-6 rounded-2xl font-black text-2xl text-white shadow-2xl transition transform active:scale-95">
-                    إرسال الطلب
+                    تأكيد وإرسال الطلب
                 </button>
             </form>
         </div>
     </main>
 
     <footer class="bg-slate-900 text-gray-500 py-12 text-center border-t-8 border-gold px-4">
-        <p class="font-black text-white mb-3 text-xl tracking-wide">مديرية ناحية الرضوية - المكتب الإعلامي</p>
-        <p class="text-sm opacity-60 font-bold mb-8">جميع الحقوق محفوظة © 2026</p>
-        <div class="max-w-xs mx-auto pt-6 border-t border-slate-800">
+        <p class="font-black text-white mb-3 text-xl tracking-wide text-center">مديرية ناحية الرضوية - المكتب الإعلامي</p>
+        <p class="text-sm opacity-60 font-bold mb-8 text-center uppercase tracking-widest leading-loose">
+            «نستمع إليكم… لنخدمكم بشكل أفضل» <br> جميع الحقوق محفوظة © 2026
+        </p>
+        <div class="max-w-xs mx-auto pt-6 border-t border-slate-800 text-center">
             <p class="text-xs font-black italic text-gold tracking-[0.2em] uppercase">تصميم وبرمجة علي دوهان الحسيني</p>
         </div>
     </footer>
@@ -159,12 +170,10 @@
             "المدير": DIRECTOR_ID,
             "القانونية": "-5242195822",
             "المولدات": "-5236252488",
-            "البلديات": "-5272119917",
+            "البلدية": "-5272119917",
             "الكهرباء": "-4957303068",
             "الماء": "-5215582580"
         };
-
-        let currentMode = '';
 
         function setMode(mode) {
             currentMode = mode;
@@ -180,59 +189,50 @@
 
             if (mode === 'complaint') {
                 title.innerText = "قسم الشكاوى والخدمات 📝";
-                indicator.className = "h-2 w-32 mx-auto rounded-full bg-red-600";
+                indicator.className = "h-2 w-40 mx-auto rounded-full bg-red-600";
                 submitBtn.className = "w-full py-6 rounded-2xl font-black text-2xl text-white shadow-2xl transition transform active:scale-95 bg-red-600 hover:bg-red-800";
                 secretSection.classList.remove('hidden');
-                
-                ["المدير", "القانونية", "المولدات", "البلديات", "الكهرباء", "الماء", "المختارية"].forEach(d => {
-                    deptSelect.add(new Option(d, d));
-                });
+                ["المدير", "القانونية", "المولدات", "البلدية", "الكهرباء", "الماء", "المختارية"].forEach(d => deptSelect.add(new Option(d, d)));
             } else {
                 title.innerText = "مبادرة منطقتنا أجمل 🌟";
-                indicator.className = "h-2 w-32 mx-auto rounded-full bg-green-600";
+                indicator.className = "h-2 w-40 mx-auto rounded-full bg-green-600";
                 submitBtn.className = "w-full py-6 rounded-2xl font-black text-2xl text-white shadow-2xl transition transform active:scale-95 bg-green-600 hover:bg-green-800";
                 secretSection.classList.add('hidden');
-                
-                ["مديرية ناحية الرضوية", "شعبة البلديات"].forEach(d => {
-                    deptSelect.add(new Option(d, d));
-                });
+                ["مديرية ناحية الرضوية", "شعبة البلديات"].forEach(d => deptSelect.add(new Option(d, d)));
             }
             window.scrollTo({ top: section.offsetTop - 100, behavior: 'smooth' });
         }
 
         document.getElementById('secretToggle').addEventListener('change', function() {
-            const note = document.getElementById('secretNote');
             document.getElementById('deptWrapper').style.opacity = this.checked ? '0.3' : '1';
-            note.style.display = this.checked ? 'block' : 'none';
+            document.getElementById('secretNote').style.display = this.checked ? 'block' : 'none';
         });
 
         function getLocation() {
             const btn = document.getElementById('locBtn');
             if (navigator.geolocation) {
-                btn.innerText = "جاري تحديد إحداثيات الموقع...";
+                btn.innerText = "جاري تحديد الموقع...";
                 navigator.geolocation.getCurrentPosition((p) => {
                     document.getElementById('userCoords').value = `https://maps.google.com/?q=${p.coords.latitude},${p.coords.longitude}`;
-                    btn.innerText = "✅ تم تحديد الموقع بدقة";
-                    btn.classList.add('bg-green-100', 'text-green-700', 'border-green-300');
-                }, () => { btn.innerText = "❌ فشل التحديد - يرجى تفعيل الـ GPS"; });
+                    btn.innerText = "✅ تم تحديد الموقع بنجاح";
+                    btn.classList.add('bg-green-100', 'text-green-700');
+                }, () => { btn.innerText = "❌ فشل التحديد - فعل الـ GPS"; });
             }
         }
 
         function generateSerial() {
             const date = new Date();
-            const year = date.getFullYear();
-            const random = Math.floor(1000 + Math.random() * 9000);
-            return `RAD-${year}-${random}`;
+            return `RAD-${date.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
         }
 
         document.getElementById('complaintForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            btn.innerText = "جاري المعالجة والإرسال...";
+            btn.innerText = "جاري الإرسال...";
             btn.disabled = true;
 
             const serial = generateSerial();
-            const isSecret = document.getElementById('secretToggle').checked && currentMode === 'complaint';
+            const isSecret = document.getElementById('secretToggle').checked;
             const name = document.getElementById('userName').value;
             const phone = document.getElementById('userPhone').value;
             const dept = isSecret ? "المدير (سري 👤)" : document.getElementById('targetDept').value;
@@ -243,18 +243,6 @@
             const imageFile = document.getElementById('userImage').files[0];
 
             const targetID = (isSecret || currentMode === 'volunteer') ? DIRECTOR_ID : (IDS[dept] || DIRECTOR_ID);
-            const header = currentMode === 'volunteer' ? "🌟 *مبادرة طوعية جديدة*" : "📢 *بلاغ مواطن جديد*";
-
-            const msgText = `${header}%0A` +
-                            `--------------------------%0A` +
-                            `🔢 *رقم الطلب:* ${serial}%0A` +
-                            `🏢 *إلى:* ${dept}%0A` +
-                            `📝 *الاسم:* ${name}%0A` +
-                            `📞 *الهاتف:* ${phone}%0A` +
-                            `🌍 *المنطقة:* ${region}%0A` +
-                            `👴 *المختار:* ${mukhtar}%0A` +
-                            `💬 *التفاصيل:* ${details}%0A` +
-                            `📍 *الموقع:* ${loc}`;
 
             try {
                 if (imageFile) {
@@ -264,19 +252,15 @@
                     fd.append('caption', `رقم الطلب: ${serial}\nإلى: ${dept}\nالاسم: ${name}\nالهاتف: ${phone}\nالمنطقة: ${region}\nالتفاصيل: ${details}\nالموقع: ${loc}`);
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd });
                 } else {
-                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${targetID}&text=${msgText}&parse_mode=Markdown`);
-                }
-
-                // نسخة للمدير للمتابعة
-                if(targetID !== DIRECTOR_ID) {
-                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${DIRECTOR_ID}&text=${encodeURIComponent("إشعار متابعة للمدير:\n" + msgText.replace(/%0A/g, '\n'))}`);
+                    const msg = `🔢 *رقم الطلب:* ${serial}%0A🏢 *إلى:* ${dept}%0A👤 *الاسم:* ${name}%0A📞 *الهاتف:* ${phone}%0A🌍 *المنطقة:* ${region}%0A👴 *المختار:* ${mukhtar}%0A💬 *التفاصيل:* ${details}%0A📍 *الموقع:* ${loc}`;
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${targetID}&text=${msg}&parse_mode=Markdown`);
                 }
 
                 document.getElementById('serialNumber').innerText = serial;
                 document.getElementById('successModal').style.display = 'flex';
                 this.reset();
             } catch (err) {
-                alert("حدث خطأ في الشبكة، يرجى المحاولة مرة أخرى.");
+                alert("فشل الإرسال، تحقق من الإنترنت.");
             } finally {
                 btn.innerText = "إرسال الطلب";
                 btn.disabled = false;
@@ -286,7 +270,6 @@
         function closeModal() {
             document.getElementById('successModal').style.display = 'none';
             document.getElementById('formSection').classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
